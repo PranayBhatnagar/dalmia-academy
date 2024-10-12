@@ -671,6 +671,7 @@ body:not(.dsn-cursor-effect) #dsn_cursor_inner {
 	line-height: 90px;
 }
 
+
 .bg-dots:not(.dsn-btn, .service-item, .service-item-inner),
 .bg-dots .background-section:not(.dsn-btn, .service-item, .service-item-inner),
 .bg-dots .background-main:not(.dsn-btn, .service-item, .service-item-inner),
@@ -6029,7 +6030,7 @@ ul.intro-project-list li h5.title-list-project+p.description-list-project {
 
 	.about-section .experience .exp-number {
 		transform: scale3d(1, 1.2, 1);
-		font-size: 150px;
+		font-size: 100px;
 		line-height: 120px;
 	}
 }
