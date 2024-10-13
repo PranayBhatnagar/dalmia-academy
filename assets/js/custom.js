@@ -1402,27 +1402,30 @@ const dsnParam = {
 
 	function changeStyle() {
 		const options = $('#dsn_box_options');
+	
+		// Ensure body starts in LIGHT mode
+		if (!$body.hasClass('v-light')) {
+			$body.removeClass('v-dark').addClass('v-light');
+		}
+	
 		options.on('click', function () {
-			const isDark = $body.hasClass('v-dark'),
-				_dark = $('.v-dark'),
-				_light = $('.v-light');
-
-			$body.toggleClass('v-dark');
-
-			_dark.removeClass('v-dark').addClass('v-light');
-
-			_light.addClass('v-dark').removeClass('v-light');
-
+			const isLight = $body.hasClass('v-light');  // Check if currently in LIGHT mode
+	
+			// Toggle between LIGHT and DARK
+			$body.toggleClass('v-light v-dark');  // If v-light is present, switch to v-dark, and vice versa
+	
 			$.ajax({
 				url: dsnParam.ajaxStyle,
 				type: "post",
 				data: {
-					color: isDark ? 'v-light' : 'v-dark',
+					color: isLight ? 'v-dark' : 'v-light',  // Send the appropriate theme value
 					style: "off"
 				}
 			});
 		});
 	}
+	
+	
 
 	function list_project($el = $(document)) {
 		function changeState(_active, _remove, $product) {
