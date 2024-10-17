@@ -2704,6 +2704,14 @@
     margin-bottom: 0.5vw;
   }
 
+  @media only screen and (max-width: 768px) {
+    #logodone {
+        width: 30vw; /* Larger size for mobile view */
+        max-width: 30vw;
+        margin-left: 0; /* Adjust margin for better centering */
+    }
+  }
+  
   p {
     color: var(--font-color);
   }
