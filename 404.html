@@ -51,20 +51,6 @@
         <p>Click the button below to return to the homepage.</p>
         <a href="www.dalmia-academy.vercel.app">Go to Homepage</a>
     </div>
-    <script>
-        let countdown = document.getElementById('countdown');
-        let seconds = 5;
-    
-        const interval = setInterval(() => {
-            seconds--;
-            countdown.textContent = seconds;
-    
-            if (seconds === 0) {
-                clearInterval(interval);
-                window.location.href = 'www.dalmia-academy.vercel.app';  // Redirect to the homepage
-            }
-        }, 1000);  // Update every second
-    </script>
 </body>
 </html>
 
