@@ -115,12 +115,44 @@
 				</nav>
 				<div id="navbar_toggle" class="navbar-toggle">
 					<div class="toggle-icon">
-						<div class="toggle-line"></div>
-						<div class="toggle-line"></div>
-						<div class="toggle-line"></div>
+						<div class="toggle-line" style="background-color: black; height: 4px; width: 30px; margin: 5px 0;"></div>
+						<div class="toggle-line" style="background-color: black; height: 4px; width: 30px; margin: 5px 0;"></div>
+						<div class="toggle-line" style="background-color: black; height: 4px; width: 30px; margin: 5px 0;"></div>
 					</div>
+					<script>
+						function updateToggleLineColor() {
+							const toggleLines = document.querySelectorAll('.toggle-line');
+							const isMobileView = window.innerWidth <= 768;
+				
+							toggleLines.forEach(line => {
+								line.style.backgroundColor = isMobileView ? "white" : "black";
+							});
+						}
+				
+						// Run on page load
+						updateToggleLineColor();
+				
+						// Add a listener for window resize to handle dynamic changes
+						window.addEventListener('resize', updateToggleLineColor);
+					</script>
 					<div class="toggle-text">
-						<div class="text-menu">Menu</div>
+						<div class="text-menu" style="color: black;">Menu</div>
+						<script>
+							function updateMenuColor() {
+								const menu = document.querySelector('.text-menu');
+								if (window.innerWidth <= 768) {
+									menu.style.color = "white";
+								} else {
+									menu.style.color = "black";
+								}
+							}
+
+							// Run on page load
+							updateMenuColor();
+
+							// Add a listener for window resize to handle dynamic changes
+							window.addEventListener('resize', updateMenuColor);
+						</script>
 						<div class="text-open">Open</div>
 						<div class="text-close">Close</div>
 					</div>
@@ -138,23 +170,45 @@
                 <div class="entry-header p-relative over-hidden">
                     <div id="hero_image" class="p-absolute dsn-hero-parallax-img over-hidden" data-dsn-ajax="img"
                         data-overlay="1">
-                        <img src="assets/img/poster/poster-9.jpg" class="cover-bg-img transform-3d" alt=""/>
+                        <img src="assets/img/poster/poster-9.jpg" class="cover-bg-img transform-3d" alt="" id="responsive-image" />
+						<script>
+							function updateImage() {
+								const image = document.getElementById('responsive-image');
+								const isMobileView = window.innerWidth <= 768;
+
+								// Switch the source based on the viewport width
+								if (isMobileView) {
+									image.src = "assets/img/poster/bg-img.jpg"; // Alternate image for mobile view
+								} else {
+									image.src = "assets/img/poster/poster-9.jpg"; // Original image for larger screens
+								}
+							}
+
+							// Run on page load
+							updateImage();
+
+							// Add a listener for window resize to handle dynamic changes
+							window.addEventListener('resize', updateImage);
+						</script>
                     </div>
 
-                    <div id="hero_content" class="d-flex p-relative h-100 dsn-hero-parallax-title container align-items-end">
-                        <div class="content p-relative ">
-                            <div class="intro-project w-100">
-                                <div class="intro-title ">
-                                    <div id="hero_title">
-                                        <h1 class="title" data-dsn-ajax="title">OUR COURSES</h1>
-                                    </div>
-                                    <p class="subtitle-meta metas p-relative mt-10 max-w570">
-                                        At Dalmia Academy, we offer a wide range of specialized courses designed to help students excel in academics and competitive exams. Whether you're preparing for board exams or entrance tests like IPMAT and CAT, our expert-led courses provide the guidance you need to succeed.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="hero_content" class="d-flex p-relative h-100 dsn-hero-parallax-title container align-items-end" 
+    					style="text-align: center; justify-content: center; align-items: center;">
+						<div class="content p-relative" style="width: 100%;">
+							<div class="intro-project w-100">
+								<div class="intro-title">
+									<div id="hero_title">
+										<h1 class="title" data-dsn-ajax="title">OUR COURSES</h1>
+									</div>
+									<p class="subtitle-meta metas p-relative mt-10 max-w570" 
+										style="margin: 0 auto; text-align: center;">
+										At Dalmia Academy, we offer a wide range of specialized courses designed to help students excel in academics and competitive exams. Whether you're preparing for board exams or entrance tests like IPMAT and CAT, our expert-led courses provide the guidance you need to succeed.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
                 </div>
             </header>
             <!-- ========== End Header ========== -->
@@ -775,58 +829,111 @@
 													<div class="menu-footer-menu-container">
 														<ul id="menu-footer-menu" class="menu">
 															<li class="menu-item">
-																<a href="index.html">HOME</a>
-															</li>
-															<li class="menu-item">
-																<a href='#'>COURSES</a>
-															</li>
-															<li class="menu-item">
-																<a href='#'>BLOG</a>
-															</li>
-															<li class="menu-item">
-																<a href='#'>ABOUT US</a>
-															</li>
-															<li class="menu-item">
-																<a  href='#'>CONTACT US</a>
-															</li>
-														</ul>
-													</div>
-												</div>
-												<div class="grid-col-3">
-													<h4 class="subtitle p-relative line-shape  line-shape-after "><span
-														class="background-revere ">CONTACT</span>
-													</h4>
-													<div class="col-contact">
-														<p class="mt-10"><strong>T</strong> : <a class="link-hover" href="tel:+91-9993633330">+91-9993633330</a></p>
-														<p class="mt-10"><strong>T</strong> : <a class="link-hover" href="tel:+91-1234567890">+91-1234567890</a></p>
-														<p class="over-hidden mt-10">
-															<strong>E</strong> : <a class="link-hover" href="mailto:abhay@monkeycarat.com">admission@dalmiaacademy.com</a>
-														</p>
-														<p class="over-hidden mt-10">
-															<strong>E</strong> : <a class="link-hover" href="mailto:info@monkeycarat.com">info@dalmiaacademy.com</a>
-														</p>
-													</div>
-												</div>
-												<div class="grid-col-4">
-													<h4 class="subtitle p-relative line-shape  line-shape-after "><span
-														class="background-revere ">OFFICE ADDRESS</span>
-													</h4>
-													<div class="col-address">
-														<p>
-															30 Kalpana Lok, Vaikunthdham Colony,<br> Indore, India - 452001
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="footer-bottom mt-60 pt-30 border-top pb-30 text-center">
-												<p class="over-hidden">
-													© 2024 Designed by
-													<a href="https://pranaybhatnagar.vercel.app/" class="link-hover" data-hover-text="DSN Grid" target="_blank">Pranay Bhatnagar</a>
-												</p>
-											</div>
-										</div>
-									</div>
-								</footer>
+																<footer id="dsn_footer" class="dsn-footer p-relative footer-animate svg-animate background-main">
+																	<svg class="dsn-separator dsn-separator-up  dsn-icon-assistant-color" width="100%" height="100%"
+																		viewBox="0 0 100 10" preserveAspectRatio="none">
+																		<path class="path-anim separator__path" data-dsn-to="M 0 0 C 40 0 55 0 100 0 L 0 0 Z"
+																			vector-effect="non-scaling-stroke" d="M 0 0 C 40 16 75 10 100 0 L 0 0 Z"></path>
+																	</svg>
+																	<div class="footer-content p-relative mt-section" id="accuratemarginleft">
+																		<div class="text-center container">
+																			<h2 class="title-h2 ">
+																				LET'S MAKE AN
+																				<span class="d-block"><b><i>AMAZING </i></b> CAREER TOGETHER</span>
+																			</h2>
+																			<div class="dsn-icon-heading-color dsn-def-btn d-flex justify-content-center mt-30">
+																				<a class='dsn-btn dsn-border border-color-default  background-section has-icon-left' href='#'>
+																					<span class="dsn-icon dsn-bg-before btn-icon-left heading-color z-index-1">
+																						<i class="fas fa-angle-right" aria-hidden="true"></i>
+																					</span>
+																					<span class="title-btn p-relative  z-index-1 ">GET A FREE COUNSELLING SESSION NOW</span>
+																				</a>
+																			</div>
+																		</div>
+																		<div class="dsn-container pt-60">
+																			<div class="d-grid grid-lg-4 grid-md-2">
+																				<div class="grid-col-1" style="text-align: center;">
+																					<div class="dsn-logo main-logo">
+																						<a href="#" class="custom-logo-link main-brand" rel="home">
+																							<img class="custom-logo logo-light" src="assets/img/logo/logo-192x192.png" alt=""/>
+																							<img class="custom-logo logo-dark" src="assets/img/logo/logo-192x192.png" alt=""/>
+																						</a>
+																					</div>
+																					<ul class="dsn-socials box-social mt-20 dsn-icon-heading-color"
+																						style="display: flex; justify-content: center; gap: 10px;">
+																						<li><a href="#" target="_blank" rel="nofollow" class="init-color move-circle border-color-default"
+																								data-dsn="parallax"><span class="dsn-icon"><i class="fab fa-instagram"></i></span><span>IN</span></a>
+																						</li>
+																						<li><a href="#" target="_blank" rel="nofollow" class="init-color move-circle border-color-default"
+																								data-dsn="parallax"><span class="dsn-icon"><i class="fab fa-facebook-f"></i></span><span>FB</span></a>
+																						</li>
+																						<li><a href="#" target="_blank" rel="nofollow" class="init-color move-circle border-color-default"
+																								data-dsn="parallax"><span class="dsn-icon"><i class="fab fa-linkedin-in"></i></span><span>LN</span></a></li>
+																					</ul>
+																				</div>
+																				<div class="grid-col-2" style="text-align: center;">
+																					<h4 class="subtitle p-relative line-shape line-shape-after"><span class="background-revere">NAVIGATION</span></h4>
+																					<ul id="menu-footer-menu" class="menu" style="list-style: none; padding: 0;">
+																						<li class="menu-item"><a href="index.html">HOME</a></li>
+																						<li class="menu-item"><a href='#'>COURSES</a></li>
+																						<li class="menu-item"><a href='#'>BLOG</a></li>
+																						<li class="menu-item"><a href='#'>ABOUT US</a></li>
+																						<li class="menu-item"><a href='#'>CONTACT US</a></li>
+																					</ul>
+																				</div>
+																				<div class="grid-col-3" style="text-align: center;">
+																					<h4 class="subtitle p-relative line-shape line-shape-after"><span class="background-revere">CONTACT</span></h4>
+																					<div>
+																						<p class="mt-10"><strong>T</strong> : <a class="link-hover" href="tel:+91-9993633330">+91-9993633330</a></p>
+																						<p class="mt-10"><strong>T</strong> : <a class="link-hover" href="tel:+91-1234567890">+91-1234567890</a></p>
+																						<p class="over-hidden mt-10"><strong>E</strong> : <a class="link-hover"
+																								href="mailto:abhay@monkeycarat.com">admission@dalmiaacademy.com</a></p>
+																						<p class="over-hidden mt-10"><strong>E</strong> : <a class="link-hover"
+																								href="mailto:info@monkeycarat.com">info@dalmiaacademy.com</a></p>
+																					</div>
+																				</div>
+																				<div class="grid-col-4" style="text-align: center;">
+																					<h4 class="subtitle p-relative line-shape line-shape-after"><span class="background-revere">OFFICE ADDRESS</span></h4>
+																					<p>30 Kalpana Lok, Vaikunthdham Colony,<br> Indore, India - 452001</p>
+																				</div>
+																			</div>
+																			<div class="footer-bottom mt-60 pt-30 border-top pb-30 text-center">
+																				<p class="over-hidden">© 2024 Designed by
+																					<a href="https://pranaybhatnagar.vercel.app/" class="link-hover" target="_blank">Pranay Bhatnagar</a>
+																				</p>
+																			</div>
+																		</div>
+																	</div>
+																</footer>
+																
+																<script>
+																	document.addEventListener('DOMContentLoaded', function () {
+																		function adjustFooterAlignment() {
+																			const footer = document.getElementById('dsn_footer');
+																			if (window.innerWidth < 768) {
+																				footer.style.textAlign = 'center';
+																				const grids = footer.querySelectorAll('.d-grid > div');
+																				grids.forEach(grid => {
+																					grid.style.width = '100%';
+																					grid.style.textAlign = 'center';
+																				});
+																			} else {
+																				footer.style.textAlign = '';
+																				const grids = footer.querySelectorAll('.d-grid > div');
+																				grids.forEach(grid => {
+																					grid.style.width = '';
+																					grid.style.textAlign = '';
+																				});
+																			}
+																		}
+																
+																		// Initial check
+																		adjustFooterAlignment();
+																
+																		// Recheck on window resize
+																		window.addEventListener('resize', adjustFooterAlignment);
+																	});
+																</script>
 				<!-- ========== End Footer ========== -->
 			</div>
 		</main>

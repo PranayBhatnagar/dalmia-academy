@@ -47,7 +47,7 @@
 					</a>
 				</div>
 				<nav class="main-navigation">
-					<div class="menu-cover-title header-container dsn-container">MENU</div>
+					<div class="menu-cover-title header-container dsn-container">MENUS</div>
 					<ul id="dsn-primary-list" class="primary-nav h2">
 						<li class="nav-item">
 							<a href="index.html" title="Home">
@@ -107,12 +107,44 @@
 				</nav>
 				<div id="navbar_toggle" class="navbar-toggle">
 					<div class="toggle-icon">
-						<div class="toggle-line"></div>
-						<div class="toggle-line"></div>
-						<div class="toggle-line"></div>
+						<div class="toggle-line" style="background-color: black; height: 4px; width: 30px; margin: 5px 0;"></div>
+						<div class="toggle-line" style="background-color: black; height: 4px; width: 30px; margin: 5px 0;"></div>
+						<div class="toggle-line" style="background-color: black; height: 4px; width: 30px; margin: 5px 0;"></div>
 					</div>
+					<script>
+						function updateToggleLineColor() {
+							const toggleLines = document.querySelectorAll('.toggle-line');
+							const isMobileView = window.innerWidth <= 768;
+				
+							toggleLines.forEach(line => {
+								line.style.backgroundColor = isMobileView ? "white" : "black";
+							});
+						}
+				
+						// Run on page load
+						updateToggleLineColor();
+				
+						// Add a listener for window resize to handle dynamic changes
+						window.addEventListener('resize', updateToggleLineColor);
+					</script>
 					<div class="toggle-text">
-						<div class="text-menu">Menu</div>
+						<div class="text-menu" style="color: black;">Menu</div>
+						<script>
+							function updateMenuColor() {
+								const menu = document.querySelector('.text-menu');
+								if (window.innerWidth <= 768) {
+									menu.style.color = "white";
+								} else {
+									menu.style.color = "black";
+								}
+							}
+
+							// Run on page load
+							updateMenuColor();
+
+							// Add a listener for window resize to handle dynamic changes
+							window.addEventListener('resize', updateMenuColor);
+						</script>
 						<div class="text-open">Open</div>
 						<div class="text-close">Close</div>
 					</div>
@@ -129,12 +161,31 @@
 				<div class="entry-header p-relative over-hidden">
 					<div id="hero_image" class="p-absolute dsn-hero-parallax-img over-hidden" data-dsn-ajax="img"
 						data-overlay="1">
-						<img src="assets/img/poster/poster-9.jpg" class="cover-bg-img transform-3d" alt=""/>
+						<img src="assets/img/poster/poster-9.jpg" class="cover-bg-img transform-3d" alt="" id="responsive-image" />
+						<script>
+							function updateImage() {
+								const image = document.getElementById('responsive-image');
+								const isMobileView = window.innerWidth <= 768;
+
+								// Switch the source based on the viewport width
+								if (isMobileView) {
+									image.src = "assets/img/poster/bg-img.jpg"; // Alternate image for mobile view
+								} else {
+									image.src = "assets/img/poster/poster-9.jpg"; // Original image for larger screens
+								}
+							}
+
+							// Run on page load
+							updateImage();
+
+							// Add a listener for window resize to handle dynamic changes
+							window.addEventListener('resize', updateImage);
+						</script>
 					</div>
 					<div id="hero_content" class="d-flex p-relative h-100 dsn-hero-parallax-title container align-items-center">
-						<div class="content p-relative ">
+						<div class="content p-relative">
 							<div class="intro-project w-100">
-								<div class="intro-title ">
+								<div class="intro-title">
 									<div id="hero_title">
 										<h1 class="title title-xxl" data-dsn-ajax="title">
 											<strong class="theme-color">DALMIA</strong>
@@ -148,6 +199,42 @@
 							</div>
 						</div>
 					</div>
+					
+					<script>
+						function adjustHeroContentAlignment() {
+							const heroContent = document.getElementById("hero_content");
+							const heroTitle = document.getElementById("hero_title");
+							const subtitleMeta = document.getElementById("red-color");
+					
+							if (window.innerWidth <= 768) {
+								// For mobile view
+								heroContent.style.display = "flex";
+								heroContent.style.flexDirection = "column";
+								heroContent.style.justifyContent = "center";
+								heroContent.style.textAlign = "center";
+					
+								heroTitle.style.margin = "0 auto";
+								subtitleMeta.style.margin = "20px auto 0 auto"; /* Adds space above the sub-heading */
+								subtitleMeta.style.textAlign = "center";
+							} else {
+								// For desktop view (reset styles)
+								heroContent.style.display = "";
+								heroContent.style.flexDirection = "";
+								heroContent.style.justifyContent = "";
+								heroContent.style.textAlign = "";
+					
+								heroTitle.style.margin = "";
+								subtitleMeta.style.margin = "30px 0 0 0"; /* Adds space above the sub-heading */
+								subtitleMeta.style.textAlign = "";
+							}
+						}
+					
+						// Adjust alignment on load and resize
+						window.addEventListener("load", adjustHeroContentAlignment);
+						window.addEventListener("resize", adjustHeroContentAlignment);
+					</script>
+					
+					
 				</div>
 				<a href="index.html#dsn_header" rel="nofollow" class="dsn-scroll-up social-side1"
 					data-dsn-option='{"ease": "power4.inOut" , "duration" : 1.5}'>
@@ -178,22 +265,51 @@
 								</a>
 							</div>
 						</div>
-						<div class="box-right box-creative p-relative">
-							<div class="p-relative border-rdu over-hidden h-100">
+						<div class="box-right box-creative p-relative" id="image-container" style="width: 100%; display: flex; justify-content: center;">
+							<div class="p-relative border-rdu over-hidden h-100" style="width: 100%; max-width: 100%; display: flex; justify-content: center;">
 								<div class="img-box-parallax h-100 w-100 before-z-index dsn-animate dsn-effect-left border-rdu"
-									data-dsn-triggerhook="bottom"
-									data-dsn-grid="move-up" data-overlay="1">
-									<img src='assets/img/poster/poster-3.jpg' class="cover-bg-img has-direction"
-										data-dsn-position="50% 0%" alt=""/>
+									data-dsn-triggerhook="bottom" data-dsn-grid="move-up" data-overlay="1" style="display: flex; justify-content: center; align-items: center; width: 100%; overflow: hidden;">
+									<img src="assets/img/poster/poster-3.jpg" class="cover-bg-img has-direction"
+										data-dsn-position="50% 0%" alt="" id="desktop-image" style="width: 100%; height: auto; object-fit: cover;">
 								</div>
 							</div>
-							<!-- <div class="img-top">
-								<img src='assets/img/poster/poster-1.jpg' class="cover-bg-img border-rdu" alt=""/>
-							</div>
-							<div class="img-bottom">
-								<img src='assets/img/poster/poster-4.jpg' class="cover-bg-img border-rdu" alt=""/>
-							</div> -->
 						</div>
+						
+						<script>
+							// Function to check screen width and show/hide the entire block
+							function toggleImageVisibility() {
+								var width = window.innerWidth;
+								var imageContainer = document.getElementById('image-container');
+						
+								// If width is less than 768px (mobile view), hide the entire image container
+								if (width < 768) {
+									imageContainer.style.display = 'none';  // Hide entire block on mobile
+								} else {
+									imageContainer.style.display = 'flex'; // Show entire block on desktop
+								}
+							}
+						
+							// Run the function on window resize and on initial load
+							window.onload = toggleImageVisibility;
+							window.onresize = toggleImageVisibility;
+						</script>
+						<!-- Image for mobile view only -->
+						<div id="mobile_image" style="display:none;">
+							<img src="assets/img/poster/poster-3 - Copy.jpg" alt="Mobile Image" style="width: 100%;"/>
+						</div>
+
+						<script>
+							window.addEventListener("resize", function() {
+								var mobileImage = document.getElementById('mobile_image');
+								if (window.innerWidth <= 768) { // Mobile screen size
+									mobileImage.style.display = "block";
+								} else {
+									mobileImage.style.display = "none";
+								}
+							});
+							// Trigger resize function on page load
+							window.dispatchEvent(new Event('resize'));
+						</script>											
 					</div>
 				</div>
 				<!-- ========== End About Section ========== -->
@@ -922,10 +1038,31 @@
 					</div>
 					<div class="dsn-bg-section p-absolute w-100 h-100 over-hidden top-0 left-0">
 						<div class="h-100 img-box-parallax before-z-index section-margin w-100" data-overlay="4">
-							<video class="cover-bg-img has-direction" src="assets/img/intro-video.mp4" autoplay muted loop playsinline></video>
+							<!-- Desktop Video -->
+							<video class="cover-bg-img has-direction desktop-video" src="assets/img/intro-video.mp4" autoplay muted loop playsinline></video>
+							<!-- Mobile Video (Initially Hidden) -->
+							<video class="cover-bg-img has-direction mobile-video" src="assets/img/intro-video-mobile.mp4" autoplay muted loop playsinline style="display:none;"></video>
 						</div>
 					</div>
 				</div>
+				
+				<script>
+					window.addEventListener("resize", function() {
+						var desktopVideo = document.querySelector('.desktop-video');
+						var mobileVideo = document.querySelector('.mobile-video');
+						
+						if (window.innerWidth <= 768) { // Mobile screen size
+							desktopVideo.style.display = "none";  // Hide desktop video
+							mobileVideo.style.display = "block";  // Show mobile video
+						} else {
+							desktopVideo.style.display = "block";  // Show desktop video
+							mobileVideo.style.display = "none";  // Hide mobile video
+						}
+					});
+					// Trigger resize function on page load
+					window.dispatchEvent(new Event('resize'));
+				</script>
+				
 				<!-- ========== End Play Video ========== -->
 				<!-- ========== Blog ========== -->
 				<div class="p-relative section-margin" id="accuratemarginleft">
@@ -1398,58 +1535,112 @@
 									<div class="menu-footer-menu-container">
 										<ul id="menu-footer-menu" class="menu">
 											<li class="menu-item">
-												<a href="index.html">HOME</a>
-											</li>
-											<li class="menu-item">
-												<a href='#'>COURSES</a>
-											</li>
-											<li class="menu-item">
-												<a href='#'>BLOG</a>
-											</li>
-											<li class="menu-item">
-												<a href='#'>ABOUT US</a>
-											</li>
-											<li class="menu-item">
-												<a  href='#'>CONTACT US</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="grid-col-3">
-									<h4 class="subtitle p-relative line-shape  line-shape-after "><span
-										class="background-revere ">CONTACT</span>
-									</h4>
-									<div class="col-contact">
-										<p class="mt-10"><strong>T</strong> : <a class="link-hover" href="tel:+91-9993633330">+91-9993633330</a></p>
-										<p class="mt-10"><strong>T</strong> : <a class="link-hover" href="tel:+91-1234567890">+91-1234567890</a></p>
-										<p class="over-hidden mt-10">
-											<strong>E</strong> : <a class="link-hover" href="mailto:abhay@monkeycarat.com">admission@dalmiaacademy.com</a>
-										</p>
-										<p class="over-hidden mt-10">
-											<strong>E</strong> : <a class="link-hover" href="mailto:info@monkeycarat.com">info@dalmiaacademy.com</a>
-										</p>
-									</div>
-								</div>
-								<div class="grid-col-4">
-									<h4 class="subtitle p-relative line-shape  line-shape-after "><span
-										class="background-revere ">OFFICE ADDRESS</span>
-									</h4>
-									<div class="col-address">
-										<p>
-											30 Kalpana Lok, Vaikunthdham Colony,<br> Indore, India - 452001
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="footer-bottom mt-60 pt-30 border-top pb-30 text-center">
-								<p class="over-hidden">
-									© 2024 Designed by
-									<a href="https://pranaybhatnagar.vercel.app/" class="link-hover" data-hover-text="DSN Grid" target="_blank">Pranay Bhatnagar</a>
-								</p>
-							</div>
-						</div>
-					</div>
-				</footer>
+												<footer id="dsn_footer" class="dsn-footer p-relative footer-animate svg-animate background-main">
+													<svg class="dsn-separator dsn-separator-up  dsn-icon-assistant-color" width="100%" height="100%"
+														viewBox="0 0 100 10" preserveAspectRatio="none">
+														<path class="path-anim separator__path" data-dsn-to="M 0 0 C 40 0 55 0 100 0 L 0 0 Z"
+															vector-effect="non-scaling-stroke" d="M 0 0 C 40 16 75 10 100 0 L 0 0 Z"></path>
+													</svg>
+													<div class="footer-content p-relative mt-section" id="accuratemarginleft">
+														<div class="text-center container">
+															<h2 class="title-h2 ">
+																LET'S MAKE AN
+																<span class="d-block"><b><i>AMAZING </i></b> CAREER TOGETHER</span>
+															</h2>
+															<div class="dsn-icon-heading-color dsn-def-btn d-flex justify-content-center mt-30">
+																<a class='dsn-btn dsn-border border-color-default  background-section has-icon-left' href='#'>
+																	<span class="dsn-icon dsn-bg-before btn-icon-left heading-color z-index-1">
+																		<i class="fas fa-angle-right" aria-hidden="true"></i>
+																	</span>
+																	<span class="title-btn p-relative  z-index-1 ">GET A FREE COUNSELLING SESSION NOW</span>
+																</a>
+															</div>
+														</div>
+														<div class="dsn-container pt-60">
+															<div class="d-grid grid-lg-4 grid-md-2">
+																<div class="grid-col-1" style="text-align: center;">
+																	<div class="dsn-logo main-logo">
+																		<a href="#" class="custom-logo-link main-brand" rel="home">
+																			<img class="custom-logo logo-light" src="assets/img/logo/logo-192x192.png" alt=""/>
+																			<img class="custom-logo logo-dark" src="assets/img/logo/logo-192x192.png" alt=""/>
+																		</a>
+																	</div>
+																	<ul class="dsn-socials box-social mt-20 dsn-icon-heading-color"
+																		style="display: flex; justify-content: center; gap: 10px;">
+																		<li><a href="#" target="_blank" rel="nofollow" class="init-color move-circle border-color-default"
+																				data-dsn="parallax"><span class="dsn-icon"><i class="fab fa-instagram"></i></span><span>IN</span></a>
+																		</li>
+																		<li><a href="#" target="_blank" rel="nofollow" class="init-color move-circle border-color-default"
+																				data-dsn="parallax"><span class="dsn-icon"><i class="fab fa-facebook-f"></i></span><span>FB</span></a>
+																		</li>
+																		<li><a href="#" target="_blank" rel="nofollow" class="init-color move-circle border-color-default"
+																				data-dsn="parallax"><span class="dsn-icon"><i class="fab fa-linkedin-in"></i></span><span>LN</span></a></li>
+																	</ul>
+																</div>
+																<div class="grid-col-2" style="text-align: center;">
+																	<h4 class="subtitle p-relative line-shape line-shape-after"><span class="background-revere">NAVIGATION</span></h4>
+																	<ul id="menu-footer-menu" class="menu" style="list-style: none; padding: 0;">
+																		<li class="menu-item"><a href="index.html">HOME</a></li>
+																		<li class="menu-item"><a href='#'>COURSES</a></li>
+																		<li class="menu-item"><a href='#'>BLOG</a></li>
+																		<li class="menu-item"><a href='#'>ABOUT US</a></li>
+																		<li class="menu-item"><a href='#'>CONTACT US</a></li>
+																	</ul>
+																</div>
+																<div class="grid-col-3" style="text-align: center;">
+																	<h4 class="subtitle p-relative line-shape line-shape-after"><span class="background-revere">CONTACT</span></h4>
+																	<div>
+																		<p class="mt-10"><strong>T</strong> : <a class="link-hover" href="tel:+91-9993633330">+91-9993633330</a></p>
+																		<p class="mt-10"><strong>T</strong> : <a class="link-hover" href="tel:+91-1234567890">+91-1234567890</a></p>
+																		<p class="over-hidden mt-10"><strong>E</strong> : <a class="link-hover"
+																				href="mailto:abhay@monkeycarat.com">admission@dalmiaacademy.com</a></p>
+																		<p class="over-hidden mt-10"><strong>E</strong> : <a class="link-hover"
+																				href="mailto:info@monkeycarat.com">info@dalmiaacademy.com</a></p>
+																	</div>
+																</div>
+																<div class="grid-col-4" style="text-align: center;">
+																	<h4 class="subtitle p-relative line-shape line-shape-after"><span class="background-revere">OFFICE ADDRESS</span></h4>
+																	<p>30 Kalpana Lok, Vaikunthdham Colony,<br> Indore, India - 452001</p>
+																</div>
+															</div>
+															<div class="footer-bottom mt-60 pt-30 border-top pb-30 text-center">
+																<p class="over-hidden">© 2024 Designed by
+																	<a href="https://pranaybhatnagar.vercel.app/" class="link-hover" target="_blank">Pranay Bhatnagar</a>
+																</p>
+															</div>
+														</div>
+													</div>
+												</footer>
+												
+												<script>
+													document.addEventListener('DOMContentLoaded', function () {
+														function adjustFooterAlignment() {
+															const footer = document.getElementById('dsn_footer');
+															if (window.innerWidth < 768) {
+																footer.style.textAlign = 'center';
+																const grids = footer.querySelectorAll('.d-grid > div');
+																grids.forEach(grid => {
+																	grid.style.width = '100%';
+																	grid.style.textAlign = 'center';
+																});
+															} else {
+																footer.style.textAlign = '';
+																const grids = footer.querySelectorAll('.d-grid > div');
+																grids.forEach(grid => {
+																	grid.style.width = '';
+																	grid.style.textAlign = '';
+																});
+															}
+														}
+												
+														// Initial check
+														adjustFooterAlignment();
+												
+														// Recheck on window resize
+														window.addEventListener('resize', adjustFooterAlignment);
+													});
+												</script>
+												
 				<!-- ========== End Footer ========== -->
 			</div>
 		</main>
